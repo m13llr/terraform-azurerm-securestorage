@@ -22,8 +22,7 @@ resource "azurerm_storage_account" "securestorage" {
   location                      = var.location
   account_tier                  = "Standard"
   account_replication_type      = var.environment == "Production" ? "GRS" : "LRS"
-## If the resource has a 'Production' tag then GRS account relication will be chosen, anything else gets LRS ##
-
+## If var.environment is "Production", GRS is used. Otherwise, LRS is used. ##
   public_network_access_enabled = false
   tags                          = local.tags
 }
